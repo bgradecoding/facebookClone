@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Link
-} from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default class Header extends Component {
   render() {
@@ -12,7 +10,9 @@ export default class Header extends Component {
         </a>
         <ul className="nav">
           <li className="nav-item">
-            <Link className="nav-link" to="/login">로그인</Link>
+            <Link className="nav-link" to="/login">
+              로그인
+            </Link>
           </li>
           <li className="nav-item">
             <a href="./login.html" className="nav-link">
@@ -20,7 +20,9 @@ export default class Header extends Component {
             </a>
           </li>
           <li className="nav-item">
-          <Link className="nav-link" to="/signup">회원가입</Link>
+            <Link className="nav-link" to="/signup">
+              회원가입
+            </Link>
           </li>
           <li className="nav-item">
             <a href="/u/1" className="nav-link">
