@@ -13,7 +13,6 @@ const Post = ({ post, onLikeClicked, onCommentSubmit }) => {
     contents,
     likes,
     likesOfMe,
-    commentList,
   } = post;
   const datetime = moment(createdAt).fromNow();
   const handleClickLikeButton = (e) => {
@@ -38,11 +37,11 @@ const Post = ({ post, onLikeClicked, onCommentSubmit }) => {
             {likes} 개
           </button>
           <span className="comment-count">
-            <i className="far fa-comment-alt" /> {commentList.length} 개
+            <i className="far fa-comment-alt" /> 개
           </span>
         </div>
       </div>
-      <CommentList commentList={commentList} />
+      <CommentList commentList={[]} />
       <CommentForm postSeq={seq} onCommentSubmit={onCommentSubmit} />
       <style jsx global>{`
         .card {

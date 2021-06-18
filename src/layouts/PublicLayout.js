@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 
 class PublicLayout extends Component {
   render() {
@@ -8,7 +8,7 @@ class PublicLayout extends Component {
     return (
       <Route
         {...rest}
-        render={matchProps => (
+        render={(matchProps) => (
           <>
             <Component {...matchProps} />
             <style jsx global>{`
