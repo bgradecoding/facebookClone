@@ -1,21 +1,26 @@
-import { LOGIN_USER, LOGOUT_USER } from './actionType';
+import * as ActionTypes from '@/data/rootActionTypes';
 
-const initialState = { user: null };
-
-const userReducer = (state = initialState, action) => {
+export default function comments(state = {}, action = {}) {
   switch (action.type) {
-    case LOGIN_USER:
+    case ActionTypes.GET_COMMENTS:
+      return state[action.postId];
+    case ActionTypes.ADD_COMMENT: {
+      const previewComments = state[action.postId] ? state[action.postId] : [];
+      const comments = [
+        {
+          seq: previewComments.length,
+          contents: action.contents,
+          writer: action.writer,
+          createAt: Date.now(),
+        },
+        ...previewComments,
+      ];
       return {
         ...state,
-        user: action.payload,
+        [action.postId]: comments,
       };
-    case LOGOUT_USER:
-      return {
-        user: null,
-      };
+    }
     default:
       return state;
   }
-};
-
-export default userReducer;
+}

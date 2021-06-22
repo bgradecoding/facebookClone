@@ -1,14 +1,7 @@
-import { LOGIN_USER, LOGOUT_USER } from './actionType';
+import * as ActionTypes from '@/data/rootActionTypes';
 
-export const loginUser = (user) => {
+export function logout() {
   return {
-    type: LOGIN_USER,
-    payload: user,
+    type: ActionTypes.RESET_AUTH,
   };
-};
-
-export const logoutUser = () => {
-  return {
-    type: LOGOUT_USER,
-  };
-};
+}

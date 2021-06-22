@@ -1,38 +1,28 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import Post from './Post';
 import PostForm from './PostForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { posts } from '../../data/rootActions';
+import * as actions from '@/data/rootActions';
+import * as selectors from '@/data/rootSelectors';
 
-const Home = ({ sposts, onCommentSubmit, onPostSubmit, sonLikeClicked }) => {
+const Home = () => {
   const dispatch = useDispatch();
-  const userState = useSelector((state) => state.userReducer.user);
-  const postsState = useSelector((state) => state.postReducer);
+  const postsState = useSelector(selectors.posts.getPosts);
 
-  const onLikeClicked = (pSeq) => {
-    dispatch(
-      posts.likePost({
-        seq: pSeq,
-      })
-    );
-  };
+  const posts = useMemo(() => postsState.ids.map((id) => postsState.entities[id]), [
+    postsState.entities,
+    postsState.ids,
+  ]);
 
-  const doAddPost = (pContents) => {
-    dispatch(
-      posts.addPost({
-        userName: userState.name,
-        contents: pContents,
-      })
-    );
-  };
+  const postList = useMemo(() => posts.map((post) => <Post key={post.seq} post={post} />), [posts]);
 
-  const postList = postsState.map((post) => (
-    <Post key={post.seq} onCommentSubmit={onCommentSubmit} onLikeClicked={onLikeClicked} post={post} />
-  ));
+  useEffect(() => {
+    dispatch(actions.posts.getPosts());
+  }, []);
 
   return (
     <div className="posts container">
-      <PostForm onPostSubmit={doAddPost} />
+      <PostForm />
       {postList}
       <style jsx>{`
         .container {

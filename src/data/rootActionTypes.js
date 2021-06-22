@@ -1,5 +1,3 @@
-import * as Comments from './comments/actionTypes';
-import * as Posts from './posts/actionTypes';
-import * as User from './users/actionTypes';
-
-export default { Comments, Posts, User };
+export * from './users/actionTypes';
+export * from './posts/actionTypes';
+export * from './comments/actionTypes';

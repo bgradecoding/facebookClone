@@ -1,22 +1,17 @@
 import React from 'react';
-import Logo from '../../components/Logo';
-import Profile from '../../components/Profile';
+import Logo from '/components/Logo';
+import Profile from '/components/Profile';
 import NaviItem from './NaviItem';
-import { user } from '../../data/rootActions';
-import { useSelector, useDispatch } from 'react-redux';
 
-const Navigation = () => {
-  const dispatch = useDispatch();
-  const userState = useSelector((state) => state.userReducer.user);
-
+const Navigation = ({ user, onLogout }) => {
   return (
     <nav className="navbar fixed-top bg-blue">
       <Logo />
       <ul className="nav">
-        <NaviItem to="/login" text="로그인" show={!userState} />
-        <NaviItem to="/signup" text="회원가입" show={!userState} />
-        <Profile show={userState} user={userState} />
-        <NaviItem to="/signout" action={() => dispatch(user.logoutUser())} text="로그아웃" show={userState} />
+        <NaviItem to="/login" text="로그인" show={!user} />
+        <NaviItem to="/signup" text="회원가입" show={!user} />
+        <Profile show={user} user={user} />
+        <NaviItem to="/signout" action={onLogout} text="로그아웃" show={user} />
       </ul>
 
       <style jsx>{`

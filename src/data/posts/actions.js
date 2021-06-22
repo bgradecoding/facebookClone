@@ -1,15 +1,22 @@
-import { LIKE_POST, ADD_POST } from './actionType';
+import * as ActionTypes from '@/data/rootActionTypes';
 
-export const likePost = (seq) => {
+export function writePost(contents, user) {
   return {
-    type: LIKE_POST,
-    payload: seq,
+    type: ActionTypes.ADD_POST,
+    contents,
+    user,
   };
-};
+}
 
-export const addPost = (paramPost) => {
+export function getPosts() {
   return {
-    type: ADD_POST,
-    payload: paramPost,
+    type: ActionTypes.GET_POSTS,
   };
-};
+}
+
+export function likePost(postId) {
+  return {
+    type: ActionTypes.LIKE_POST,
+    postId,
+  };
+}

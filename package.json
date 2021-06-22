@@ -28,16 +28,16 @@
     "prop-types": "^15.7.2"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
-    "connected-react-router": "^6.9.1",
+    "connected-react-router": "^6.8.0",
+    "formik": "^2.2.9",
     "moment": "^2.24.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-redux": "^7.2.4",
+    "react-redux": "^7.2.1",
     "react-router-dom": "^5.1.2",
-    "redux": "^4.1.0",
-    "redux-action": "^1.2.2",
-    "redux-actions": "^2.6.5",
-    "styled-jsx": "3.3.2"
+    "redux": "^4.0.5",
+    "styled-jsx": "^3.2.1"
   }
 }

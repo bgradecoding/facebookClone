@@ -1,21 +1,20 @@
-import { LOGIN_USER, LOGOUT_USER } from './actionType';
+import * as ActionTypes from '@/data/rootActionTypes';
 
-const initialState = { user: null };
+const initialState = {
+  name: 'harry',
+  profileImageUrl:
+    'https://s3.ap-northeast-2.amazonaws.com/grepp-cloudfront/programmers_imgs/learn/course9872/instructor_harry.png',
+};
 
-const userReducer = (state = initialState, action) => {
+export default function user(state = initialState, action = {}) {
   switch (action.type) {
-    case LOGIN_USER:
-      return {
-        ...state,
-        user: action.payload,
-      };
-    case LOGOUT_USER:
-      return {
-        user: null,
-      };
+    case ActionTypes.SET_AUTH:
+      return action.user;
+
+    case ActionTypes.RESET_AUTH:
+      return null;
+
     default:
       return state;
   }
-};
-
-export default userReducer;
+}

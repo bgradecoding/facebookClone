@@ -1,14 +1,18 @@
-import { LOGIN_USER, LOGOUT_USER } from './actionType';
+import * as ActionTypes from '@/data/rootActionTypes';
 
-export const loginUser = (user) => {
+export function getComments(postId, comments) {
   return {
-    type: LOGIN_USER,
-    payload: user,
+    type: ActionTypes.GET_COMMENTS,
+    comments,
+    postId,
   };
-};
+}
 
-export const logoutUser = () => {
+export function writeComment(postId, contents, writer) {
   return {
-    type: LOGOUT_USER,
+    type: ActionTypes.ADD_COMMENT,
+    contents,
+    writer,
+    postId,
   };
-};
+}
