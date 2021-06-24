@@ -1,9 +1,9 @@
-import { baseService } from './commonService';
+import { baseService } from './baseService';
 
 export const getConnections = async () => {
   return await baseService({
     url: '/api/user/connections',
-    method: 'get'
+    method: 'get',
   });
 };
 
@@ -11,7 +11,7 @@ export const checkEmailExistence = async (pEmail) => {
   return await baseService({
     url: '/api/user/exists',
     method: 'post',
-    data: { address : pEmail }
+    data: { address: pEmail },
   });
 };
 
@@ -19,13 +19,13 @@ export const signUp = async (pJoinData) => {
   return await baseService({
     url: '/api/user/join',
     method: 'post',
-    data: pJoinData
+    data: pJoinData,
   });
 };
 
 export const getMyInfo = async () => {
   return await baseService({
     url: '/api/user/me',
-    method: 'get'
+    method: 'get',
   });
 };

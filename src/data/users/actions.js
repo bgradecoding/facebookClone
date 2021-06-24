@@ -1,18 +1,13 @@
 import * as ActionTypes from '@/data/rootActionTypes';
 
-
-
-
-export const getComments = () => async (dispatch, getState) => {
-  const id = getState().post.activeId;
-  dispatch({ type: 'GET_COMMENTS' });
+export const getComments = (pEmail) => async (dispatch) => {
+  dispatch({ type: ActionTypes.CHECK_EMAIL_EXIST_STARTED });
   try {
-    const comments = await api.getComments(id);
-    dispatch({ type:  'GET_COMMENTS_SUCCESS', id, comments });
+    dispatch({ type: ActionTypes.CHECK_EMAIL_EXIST_SUCCESS, payload: result });
   } catch (e) {
-    dispatch({ type:  'GET_COMMENTS_ERROR', error: e });
+    dispatch({ type: ActionTypes.CHECK_EMAIL_EXIST_FAIL, error: e });
   }
-}
+};
 
 export function logout() {
   return {

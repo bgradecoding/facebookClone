@@ -1,10 +1,19 @@
 import React from 'react';
 import { STEPS } from '@/pages/SignUp/helpers';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik';
+import { checkEmailExistence } from '@/service/userService';
 
 const EmailPasswordForm = ({ setStep }) => {
+  const formik = useFormikContext();
+
   const handleSubmit = () => {
-    setStep(STEPS.PROFILE);
+    const result = checkEmailExistence(pEmail);
+    if (!result.response) {
+      setStep(STEPS.PROFILE);
+    } else {
+      formik.setFieldError('principal', 'Already exists email');
+      return;
+    }
   };
 
   return (
@@ -30,13 +39,13 @@ const EmailPasswordForm = ({ setStep }) => {
           errors.passwordConfirm = 'Required';
         }
 
-        if ( values.password !== values.passwordConfirm ){
+        if (values.password !== values.passwordConfirm) {
           errors.passwordConfirm = 'Please Check your Password.';
         }
 
         return errors;
       }}
-      onSubmit={()=>handleSubmit()}>
+      onSubmit={() => handleSubmit()}>
       {({ isSubmitting }) => (
         <Form>
           <Field type="email" name="email" className="form-control" placeholder="이메일" />
